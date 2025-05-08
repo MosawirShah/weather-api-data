@@ -1,17 +1,14 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:open_weather_app/constants/app_urls.dart';
 import 'package:open_weather_app/models/weather_model.dart';
 
-//APP URLS
-const String apiKey = '5f7c435ad58034456116891cfef110eb';
-const String baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
-
 class Network {
-  Future<WeatherModel> getOpenWeatherData({required double lat, required double lng}) async {
+  String url;
+  Network({required this.url});
+  Future<WeatherModel> getOpenWeatherData() async {
     try {
-      final response = await http.get(Uri.parse("${baseUrl}lat=34.0151&lon=71.5249&appid=$apiKey"));
+      final response = await http.get(Uri.parse(url));
       final jsonData = jsonDecode(response.body.toString());
       if (response.statusCode == 200) {
         return WeatherModel(

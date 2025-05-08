@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:open_weather_app/main.dart';
 import 'package:open_weather_app/models/weather_model.dart';
+import 'package:open_weather_app/utils/routes/name_routes.dart';
 
 class LocationWeatherView extends StatelessWidget {
    LocationWeatherView({super.key});
@@ -24,6 +25,10 @@ class LocationWeatherView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            IconButton(onPressed: ()async{
+             var cityName = await Navigator.of(context).pushNamed(RoutesName.cityNameView);
+             print(cityName.toString());
+            }, icon: Icon(Icons.search,size: 60,color: Colors.white,)),
             Center(child: Text("${temperature.toStringAsFixed(0)}°C",style: GoogleFonts.dancingScript(
               fontSize: 40,
               fontWeight: FontWeight.bold,
