@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:open_weather_app/main.dart';
 
 class CityView extends StatefulWidget {
   const CityView({super.key});
@@ -8,7 +9,6 @@ class CityView extends StatefulWidget {
 }
 
 class _CityViewState extends State<CityView> {
-
   final nameEditingController = TextEditingController();
   String? cityName;
   @override
@@ -17,39 +17,50 @@ class _CityViewState extends State<CityView> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
-                    'https://i.pinimg.com/736x/a9/b8/43/a9b843b45b13d393a22eca1b9f7fba1a.jpg'),
-            opacity: 0.5,)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 30,),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.purple,
-              shape: BoxShape.circle
+          image: NetworkImage(
+              'https://i.pinimg.com/736x/a9/b8/43/a9b843b45b13d393a22eca1b9f7fba1a.jpg'),
+          opacity: 0.7,
+        )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //SizedBox(height: 30,),
+
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Enter City Name",
+                  hintStyle: TextStyle(
+                    color: Colors.black38
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white),
+              onChanged: (value) {
+                cityName = value;
+                //print(cityName);
+              },
             ),
-            child: IconButton(onPressed: (){
-              Navigator.of(context).pop(cityName);
-            }, icon: Icon(Icons.arrow_back_ios,color: Colors.white,)),
-          ),
-          SizedBox(height: 30,),
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
+            SizedBox(
+              height: screenHeight! * 0.1,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop(cityName);
+                },
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.purple),
+                foregroundColor: WidgetStatePropertyAll(Colors.white),
               ),
-              filled: true,
-              fillColor: Colors.white
+                child: Text(
+                  "Find Weather",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
             ),
-            onChanged: (value){
-              cityName = value;
-              //print(cityName);
-            },
-          ),
-        ],
-      ),
+          ],
+        ),
       ),
     );
   }

@@ -35,7 +35,15 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SpinKitWaveSpinner(color: Colors.brown,size: 40,),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitWaveSpinner(color: Colors.purple,
+              waveColor: Colors.purple,
+              size: 60,),
+            Text("Loading..."),
+          ],
+        ),
       ),
     );
   }

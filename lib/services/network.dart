@@ -13,9 +13,9 @@ class Network {
       if (response.statusCode == 200) {
         return WeatherModel(
             temperature: jsonData['main']['temp'],
-            countryName: jsonData['sys']['country'],
-            humidity: jsonData['main']['humidity'],
-            clouds: jsonData['clouds']['all']);
+            cityName: jsonData['name'],
+            condition: jsonData['weather'][0]['id'],
+            );
       }else{
         throw Exception("The error arised with status code: ${response.statusCode}");
       }

@@ -1,12 +1,12 @@
 class WeatherModel {
   double temperature;
-  String countryName;
-  int humidity;
-  int clouds;
+  String cityName;
+  int condition;
+
 
   WeatherModel(
       {required this.temperature,
-      required this.countryName,
-      required this.humidity,
-      required this.clouds});
+      required this.cityName,
+      required this.condition,
+      });
 }
